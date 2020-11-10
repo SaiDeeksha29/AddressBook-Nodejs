@@ -1,3 +1,4 @@
+const prompt = require('prompt-sync')();
 const nameRegex = RegExp('^[A-Z]{1}[A-Za-z]{2,}$');
 const addressRegex = RegExp('^[A-Za-z0-9/,]{4,}$');
 const cityStateRegex = RegExp('^[a-zA-Z]{4,}$');
@@ -41,15 +42,25 @@ class Contact {
         }
     }
 }
-try {
-    let contact1 = new Contact("Sai", "Deeksha", "BHEL", "Hyderabad", "Telangana", "500019", "8919608260", "saideeksha@gmail.com");
-    console.log(contact1);
-} catch (e) {
-    console.error(e);
-}
-try {
-    let contact2 = new Contact("Sai", "Divya", "Miyapur", "Hyderabad", "Telangana", "500052", "8919787878", "saidivya@gmail.com");
-    console.log(contact2);
-} catch (e) {
-    console.error(e);
-}
+let addressBook = new Array();
+let choice = 0;
+do {
+    choice = prompt("Enter 1-Add contact 0-Exit: ");
+    if (choice == 1) {
+        let firstName1 = prompt("Enter the first name :");
+        let lastName1 = prompt("Enter the last name :");
+        let address1 = prompt("Enter the address :");
+        let city1 = prompt("Enter the city:");
+        let state1 = prompt("Enter the state :");
+        let zip1 = prompt("Enter the zip code :")
+        let phoneNumber1 = prompt("Enter the phone Number :");
+        let emailId1 = prompt("Enter the emailId :");
+        try {
+            var contact = new Contact(firstName1, lastName1, address1, city1, state1, zip1, phoneNumber1, emailId1);
+            addressBook.push(contact);
+            console.log(addressBook);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+} while (choice != 0);
