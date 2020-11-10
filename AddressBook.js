@@ -45,7 +45,7 @@ class Contact {
 let addressBook = new Array();
 let choice = 0;
 do {
-    choice = prompt("Enter 1-Add contact 0-Exit: ");
+    choice = prompt("Enter 1-Add contact 2-Edit Contact 0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
@@ -61,6 +61,22 @@ do {
             console.log(addressBook);
         } catch (e) {
             console.error(e);
+        }
+    }
+    else if (choice == 2) {
+        if (addressBook.length == 0) {
+            console.log("List is empty");
+        } else {
+            let name = prompt("Enter the name whose contact you want to edit: ");
+            let nameChange = prompt("Enter new name: ");
+            let found = addressBook.find((contact) => contact.firstName == name);
+            if (found == undefined) {
+                console.log("No such contact");
+            }
+            else {
+                addressBook.find((contact) => contact.firstName == name).firstName = nameChange;
+                console.log(addressBook);
+            }
         }
     }
 } while (choice != 0);
