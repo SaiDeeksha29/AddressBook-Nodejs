@@ -58,6 +58,8 @@ do {
         try {
             var contact = new Contact(firstName1, lastName1, address1, city1, state1, zip1, phoneNumber1, emailId1);
             addressBook.push(contact);
+            var myData = addressBook;
+            addressBook = Array.from(new Set(myData.map(JSON.stringify))).map(JSON.parse);
             console.log(addressBook);
         } catch (e) {
             console.error(e);
