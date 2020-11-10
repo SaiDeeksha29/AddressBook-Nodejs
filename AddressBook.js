@@ -45,7 +45,7 @@ class Contact {
 let addressBook = new Array();
 let choice = 0;
 do {
-    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 0-Exit: ");
+    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 4-Count of Contacts 0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
@@ -95,4 +95,12 @@ do {
             }
         }
     }
+    else if (choice == 4) {
+        let numberOfContacts = addressBook.reduce(countOfContacts, 0);
+        console.log("Count of contacts :" + numberOfContacts);
+    }
 } while (choice != 0);
+
+function countOfContacts(count) {
+    return count++;
+}
