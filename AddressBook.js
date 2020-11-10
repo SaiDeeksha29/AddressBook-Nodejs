@@ -44,8 +44,25 @@ class Contact {
 }
 let addressBook = new Array();
 let choice = 0;
+function countOfContacts(count) {
+    return count++;
+}
+
+let searchContactInCity = () => {
+    let userCity = prompt("Enter city name: ");
+    let userFirstName = prompt("Enter name: ");
+    let searchContactByCity = addressBook.filter(contact => contact.city == userCity).find(contact => contact.firstName == userFirstName);
+    console.log("Contact found in given city:" + searchContactByCity);
+}
+
+let searchContactInState = () => {
+    let userState = prompt("Enter state name: ");
+    let userFirstName = prompt("Enter name: ");
+    let searchContactByState = addressBook.filter(contact => contact.state == userState).find(contact => contact.firstName == userFirstName);
+    console.log("Contact found in given state: ", searchContactByState);
+}
 do {
-    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 4-Count of Contacts 0-Exit: ");
+    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 4-Count of Contacts 5-Search Contacts by city or state 0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
@@ -101,8 +118,8 @@ do {
         let numberOfContacts = addressBook.reduce(countOfContacts, 0);
         console.log("Count of contacts :" + numberOfContacts);
     }
+    else if (choice == 5) {
+        searchContactInCity();
+        searchContactInState();
+    }
 } while (choice != 0);
-
-function countOfContacts(count) {
-    return count++;
-}
