@@ -41,6 +41,11 @@ class Contact {
             this.emailId = params[7];
         }
     }
+
+    toString() {
+        return "First Name: " + this.firstName + " Last Name: " + this.lastName + " Address: " + this.address + " City: " + this.city +
+            " State: " + this.state + " Zip: " + this.zip + " Phone Number: " + this.phoneNumber + " Email Id: " + this.emailId;
+    }
 }
 let addressBook = new Array();
 let choice = 0;
@@ -91,8 +96,14 @@ function countByState(addressBook) {
     return count;
 }
 
+function sortContactByName() {
+    return addressBook.sort((a, b) => {
+        return ((a.firstName < b.firstName) ? -1 : 1)
+    });
+}
+
 do {
-    choice = prompt("Enter \n1-Add contact \n2-Edit Contact \n3-Delete Contact \n4-Count of Contacts \n5-Search Contacts by city or state \n6-View persons in city or state \n7-Count of contacts by city or state \n0-Exit: ");
+    choice = prompt("Enter \n1-Add contact \n2-Edit Contact \n3-Delete Contact \n4-Count of Contacts \n5-Search Contacts by city or state \n6-View persons in city or state \n7-Count of contacts by city or state \n8-Sort by Name \n0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
@@ -173,6 +184,15 @@ do {
         else {
             console.log("Count of contacts by city :" + countByCity(addressBook));
             console.log("Count of contacts by state :" + countByState(addressBook));
+        }
+    }
+    else if (choice == 8) {
+        if (addressBook.length == 0) {
+            console.log("No contacts");
+        }
+        else {
+            let sortByName = sortContactByName();
+            console.log(sortByName);
         }
     }
 } while (choice != 0);
