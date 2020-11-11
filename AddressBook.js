@@ -58,8 +58,23 @@ function searchByState(addressBook) {
     return addressBook.filter((contact) => contact.state == state);
 }
 
+function viewByCity(addressBook) {
+    let contactsByCity = new Map();
+    addressBook.filter((contact) =>
+        contactsByCity.set(contact.city, searchByCity(addressBook))
+    );
+    return contactsByCity;
+}
+function viewByState(addressBook) {
+    let contactsByState = new Map();
+    addressBook.filter((contact) =>
+        contactsByState.set(contact.state, searchByState(addressBook))
+    );
+    return contactsByState;
+}
+
 do {
-    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 4-Count of Contacts 5-Search Contacts by city or state 0-Exit: ");
+    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 4-Count of Contacts 5-Search Contacts by city or state 6-View persons in city or state 0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
@@ -122,6 +137,15 @@ do {
         else {
             console.log(searchByCity(addressBook));
             console.log(searchByState(addressBook));
+        }
+    }
+    else if (choice == 6) {
+        if (addressBook.length == 0) {
+            console.log("No contacts");
+        }
+        else {
+            console.log(viewByCity(addressBook));
+            console.log(viewByState(addressBook));
         }
     }
 } while (choice != 0);
