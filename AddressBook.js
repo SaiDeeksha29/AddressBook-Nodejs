@@ -49,12 +49,12 @@ function countOfContacts(count) {
 }
 
 function searchByCity(addressBook) {
-    let city = prompt("Enter city name:");
+    let city = prompt("Enter city name :");
     return addressBook.filter((contact) => contact.city == city);
 }
 
 function searchByState(addressBook) {
-    let state = prompt("Enter state name:");
+    let state = prompt("Enter state name :");
     return addressBook.filter((contact) => contact.state == state);
 }
 
@@ -73,13 +73,31 @@ function viewByState(addressBook) {
     return contactsByState;
 }
 
+function countByCity(addressBook) {
+    let city = prompt("Enter city name :");
+    let count = 0;
+    for (let i = 0; i < addressBook.length; i++) {
+        if (contact.city == city) { count++; }
+    }
+    return count;
+}
+
+function countByState(addressBook) {
+    let state = prompt("Enter state name :");
+    let count = 0;
+    for (let i = 0; i < addressBook.length; i++) {
+        if (contact.state == state) { count++; }
+    }
+    return count;
+}
+
 do {
-    choice = prompt("Enter 1-Add contact 2-Edit Contact 3-Delete Contact 4-Count of Contacts 5-Search Contacts by city or state 6-View persons in city or state 0-Exit: ");
+    choice = prompt("Enter \n1-Add contact \n2-Edit Contact \n3-Delete Contact \n4-Count of Contacts \n5-Search Contacts by city or state \n6-View persons in city or state \n7-Count of contacts by city or state \n0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
         let address1 = prompt("Enter the address :");
-        let city1 = prompt("Enter the city:");
+        let city1 = prompt("Enter the city :");
         let state1 = prompt("Enter the state :");
         let zip1 = prompt("Enter the zip code :")
         let phoneNumber1 = prompt("Enter the phone Number :");
@@ -146,6 +164,15 @@ do {
         else {
             console.log(viewByCity(addressBook));
             console.log(viewByState(addressBook));
+        }
+    }
+    else if (choice == 7) {
+        if (addressBook.length == 0) {
+            console.log("No contacts");
+        }
+        else {
+            console.log("Count of contacts by city :" + countByCity(addressBook));
+            console.log("Count of contacts by state :" + countByState(addressBook));
         }
     }
 } while (choice != 0);
