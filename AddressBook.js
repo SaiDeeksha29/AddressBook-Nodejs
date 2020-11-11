@@ -102,8 +102,26 @@ function sortContactByName() {
     });
 }
 
+function sortContactByCity() {
+    return addressBook.sort((a, b) => {
+        return ((a.city < b.city) ? -1 : 1)
+    });
+}
+
+function sortContactByState() {
+    return addressBook.sort((a, b) => {
+        return ((a.state < b.state) ? -1 : 1)
+    });
+}
+
+function sortContactByZip() {
+    return addressBook.sort((a, b) => {
+        return ((a.zip < b.zip) ? -1 : 1)
+    });
+}
+
 do {
-    choice = prompt("Enter \n1-Add contact \n2-Edit Contact \n3-Delete Contact \n4-Count of Contacts \n5-Search Contacts by city or state \n6-View persons in city or state \n7-Count of contacts by city or state \n8-Sort by Name \n0-Exit: ");
+    choice = prompt("Enter \n1-Add contact \n2-Edit Contact \n3-Delete Contact \n4-Count of Contacts \n5-Search Contacts by city or state \n6-View persons in city or state \n7-Count of contacts by city or state \n8-Sort by Name \n9-Sort by City \n10-Sort by State \n11-Sort by Zip \n0-Exit: ");
     if (choice == 1) {
         let firstName1 = prompt("Enter the first name :");
         let lastName1 = prompt("Enter the last name :");
@@ -193,6 +211,33 @@ do {
         else {
             let sortByName = sortContactByName();
             console.log(sortByName);
+        }
+    }
+    else if (choice == 9) {
+        if (addressBook.length == 0) {
+            console.log("No contacts");
+        }
+        else {
+            let sortByCity = sortContactByCity();
+            console.log(sortByCity);
+        }
+    }
+    else if (choice == 10) {
+        if (addressBook.length == 0) {
+            console.log("No contacts");
+        }
+        else {
+            let sortByState = sortContactByState();
+            console.log(sortByState);
+        }
+    }
+    else if (choice == 11) {
+        if (addressBook.length == 0) {
+            console.log("No contacts");
+        }
+        else {
+            let sortByZip = sortContactByZip();
+            console.log(sortByZip);
         }
     }
 } while (choice != 0);
